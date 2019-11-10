@@ -10,12 +10,14 @@
     %th Title
     %th Text
     %th Date
+    %th Priority
     %th
   - @turboly.each do |turbo|
     %tr
       %td= turbo.title
       %td= turbo.text
       %td= turbo.date
+      %td= turbo.priority
       %td= link_to 'Show', turbolyapp_path(turbo)
       %td= link_to 'Destroy', turbolyapp_path(turbo), |
           method: :delete,                           |

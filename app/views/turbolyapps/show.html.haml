@@ -9,6 +9,9 @@
     %p
       %strong Task:
       = @turboly.text
+    %p
+      %strong Priority:
+      = @turboly.priority
   - else
     You have no authorize to access this task
   = link_to 'Go To Task List', turbolyapps_path

@@ -1,5 +1,6 @@
 class Turbolyapp < ApplicationRecord
-  validates :title, presence: true, length: {maximum: 50} 
+  validates :title, presence: true, length: {maximum: 50}
+  validates :text, presence: true, length: {maximum: 100}
 
   def self.check_data(data)
     title = data[:title]
@@ -12,6 +13,30 @@ class Turbolyapp < ApplicationRecord
     end
 
     return true
+  end
+
+  def self.check_title(data)
+    title = data[:title]
+
+    if !title.present?
+      return true
+    end
+  end
+
+  def self.check_text(data)
+    text = data[:text]
+
+    if !text.present?
+      return true
+    end
+  end
+
+  def self.check_priority(data)
+    priority = data[:priority]
+
+    if !priority.present?
+      return true
+    end
   end
 
   def self.check_date(data)
@@ -27,5 +52,16 @@ class Turbolyapp < ApplicationRecord
       end
     end
     return same_date
+  end
+
+  def self.check_prio(data)
+    get_prio = data[:priority]
+    prio_examp =  ['Urgent', 'Medium', 'Low']
+
+    if prio_examp.include? get_prio
+      return false
+    else
+      return true
+    end
   end
 end

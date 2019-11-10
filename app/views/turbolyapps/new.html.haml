@@ -3,8 +3,29 @@
 %h1.text-align-center.text-font-14.padding-top-20
   Please input date, title and description for create new task
 = form_with scope: :turbolyapp, url: turbolyapps_path, local: true do |form|
-  - if @turboly.present?
-    - if @turboly.errors.any?
+  - if @error.present?
+    - if @error == 'title' 
+      #error_duplicate.text-color-red.text-font-14.text-align-center
+        %h2
+          %h1
+            Please Input Title
+    - elsif @error == 'text' 
+      #error_duplicate.text-color-red.text-font-14.text-align-center
+        %h2
+          %h1
+            Please Input Text
+    - elsif @error == 'priority' 
+      #error_duplicate.text-color-red.text-font-14.text-align-center
+        %h2
+          %h1
+            Please Input Priority
+    - else 
+      #error_duplicate.text-color-red.text-font-14.text-align-center
+        %h2
+          %h1
+            Please make sure your priority same like the example
+  - elsif @turboly.present?
+    -if @turboly.errors.any?
       #error_explanation
         %h2
           = pluralize(@turboly.errors.count, "error")
@@ -31,6 +52,11 @@
       = form.label :task
       %br/
       = form.text_area :text
+    %p
+      = form.label :priority
+      (Urgent, Medium, Low)
+      %br/
+      = form.text_field :priority
     %p
       = form.submit
     =link_to 'Go to My Task List', turbolyapps_path

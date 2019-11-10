@@ -34,6 +34,26 @@ class TurbolyappsController < ApplicationController
       @turboly.user_id = current_user.id
     end
 
+    if Turbolyapp.check_title(@turboly)
+      @error = 'title'
+      return render 'new'
+    end
+
+    if Turbolyapp.check_text(@turboly)
+      @error = 'text'
+      return render 'new'
+    end
+
+    if Turbolyapp.check_priority(@turboly)
+      @error = 'priority'
+      return render 'new'
+    end
+
+    if Turbolyapp.check_prio(@turboly)
+      @error = 'error'
+      return render 'new'
+    end
+
     if Turbolyapp.check_data(@turboly)
       if @turboly.save
         redirect_to @turboly
@@ -65,6 +85,6 @@ class TurbolyappsController < ApplicationController
 
   private
     def turboly_params
-      params.require(:turbolyapp).permit(:title, :text, :date)
+      params.require(:turbolyapp).permit(:title, :text, :date, :priority)
     end
 end
