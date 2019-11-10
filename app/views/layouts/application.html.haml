@@ -1,5 +1,23 @@
 !!!
 %html
+  - if notice
+    %p.text-align-center.alert.alert-success= notice
+  - if alert
+    %p.text-align-center.alert.alert-danger= alert
+  %p.navbar-text.float-right.text-align-right
+    - if user_signed_in?
+      Logged in as
+      = succeed "." do
+        %strong= current_user.email
+        %p.navbar-text.float-right.text-align-right
+          = link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'
+          |
+          \#{link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'}
+    - else
+      %p.navbar-text.float-right.text-align-right
+        = link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
+        |
+        \#{link_to "Login", new_user_session_path, :class => 'navbar-link'}
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Turboly
@@ -9,3 +27,4 @@
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     = yield
+
