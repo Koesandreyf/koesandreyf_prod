@@ -4,20 +4,36 @@ class TurbolyappsController < ApplicationController
 
   def index
     get_data = Turbolyapp.all
-    get_task = Turbolyapp.check_date(get_data)
     @task_todo = nil
+    all_data_by_user = []
+
+    get_data.each do |data|
+      if data.user_id == current_user.id
+        all_data_by_user << data
+      end
+    end
+    
+    check_date(all_data_by_user)
+    @turboly = all_data_by_user
+  end
+
+  def check_date(all_data_by_user)
+    get_task = Turbolyapp.check_date(all_data_by_user)
 
     if get_task.present?
       title_task = get_task.map{ |title_task| title_task.title }
       title_task = title_task.join(',')
-      @task_todo =  "Alert you have Task todo #{title_task} for today"
+      @task_todo =  "You have Task to do #{title_task} for today"
     end
-    
-    @turboly = get_data
   end
 
   def create
     @turboly = Turbolyapp.new(turboly_params)
+
+    if !@turboly.user_id.present?
+      @turboly.user_id = current_user.id
+    end
+
     if Turbolyapp.check_data(@turboly)
       if @turboly.save
         redirect_to @turboly
@@ -28,11 +44,17 @@ class TurbolyappsController < ApplicationController
   end
 
   def show
-    @turboly = Turbolyapp.find(params[:id])
+    if Turbolyapp.find(params[:id]).user_id.present? &&
+      Turbolyapp.find(params[:id]).user_id == current_user.id
+      @turboly = Turbolyapp.find(params[:id])
+    end
   end
 
   def destroy
-    @turboly = Turbolyapp.find(params[:id])
+    if Turbolyapp.find(params[:id]).user_id.present? &&
+      Turbolyapp.find(params[:id]).user_id == current_user.id
+      @turboly = Turbolyapp.find(params[:id])
+    end
 
     if @turboly.present?
       @turboly.destroy

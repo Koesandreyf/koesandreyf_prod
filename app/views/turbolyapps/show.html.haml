@@ -1,11 +1,14 @@
 .text-align-center
-  %p
-    %strong Date:
-    = @turboly.date
-  %p
-    %strong Title:
-    = @turboly.title
-  %p
-    %strong Task:
-    = @turboly.text
+  - if @turboly.present?
+    %p
+      %strong Date:
+      = @turboly.date
+    %p
+      %strong Title:
+      = @turboly.title
+    %p
+      %strong Task:
+      = @turboly.text
+  - else
+    You have no authorize to access this task
   = link_to 'Go To Task List', turbolyapps_path
