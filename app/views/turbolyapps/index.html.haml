@@ -1,0 +1,22 @@
+%h1.text-align-center
+  List Task 
+.padding-top-20.text-align-center
+  = link_to 'Create New Task', new_turbolyapp_path
+- if @task_todo.present?
+  #task.padding-top-20.text-align-center.text-color-red
+    =@task_todo
+%table.text-align-center.padding-top-20.padding-left-700
+  %tr
+    %th Title
+    %th Text
+    %th Date
+    %th
+  - @turboly.each do |turbo|
+    %tr
+      %td= turbo.title
+      %td= turbo.text
+      %td= turbo.date
+      %td= link_to 'Show', turbolyapps_path(turbo)
+      %td= link_to 'Destroy', turbolyapp_path(turbo), |
+          method: :delete,                           |
+          data: { confirm: 'Are you sure?' }         |

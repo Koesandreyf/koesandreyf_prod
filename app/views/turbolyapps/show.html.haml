@@ -1,0 +1,11 @@
+.text-align-center
+  %p
+    %strong Date:
+    = @turboly.date
+  %p
+    %strong Title:
+    = @turboly.title
+  %p
+    %strong Task:
+    = @turboly.text
+  = link_to 'Go To Task List', turbolyapps_path
