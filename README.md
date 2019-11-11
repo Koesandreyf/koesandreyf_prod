@@ -14,7 +14,7 @@ Things you may want to cover:
 
 * How to use it
   - First of all you need to install ruby version 2.5.7
-  - Run bundle install
+  - Run bundle install, install yarn
   - rake db:migrate
   - After that you can go to your browser and type localhost:3000
   - You need to sign up if you first time using this application, or you can sign in if you already using this application
