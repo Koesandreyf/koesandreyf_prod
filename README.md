@@ -17,11 +17,11 @@ Things you may want to cover:
   - Run bundle install
   - rake db:migrate
   - After that you can go to your browser and type localhost:3000
-  - You need to sign up if you first time using this application, or you can sign in if you already using thi application
+  - You need to sign up if you first time using this application, or you can sign in if you already using this application
   - After you log in you can input your Title Task, Task Description, Task Date and Task Priority
   - If you want to see your task list, you can go to Task List
   - In Task List, you can delete your task, show your task detail.
-  - Also in task list, if there is any task you must do it today, it will show you some alert.
+  - Also in task list, if there any task you must do it today, it will show you some alert.
 
 * System dependencies
 
