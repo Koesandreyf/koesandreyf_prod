@@ -16,6 +16,7 @@ Things you may want to cover:
 * How to use it
   - First of all you need to install ruby version 2.5.7
   - Run bundle install, install yarn
+  - gem install sqlite3 -v '1.4.1'
   - rake db:migrate
   - run rails s
   - After that you can go to your browser and type localhost:3000
