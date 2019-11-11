@@ -8,6 +8,7 @@ Things you may want to cover:
 * What i use
   - Ruby version 2.5.7
   - sqlite3 version 3.8.7.2
+  - yarn
   - Gem Haml
   - Gem Devise
   - Gem Pry
@@ -16,6 +17,7 @@ Things you may want to cover:
   - First of all you need to install ruby version 2.5.7
   - Run bundle install, install yarn
   - rake db:migrate
+  - run rails s
   - After that you can go to your browser and type localhost:3000
   - You need to sign up if you first time using this application, or you can sign in if you already using this application
   - After you log in you can input your Title Task, Task Description, Task Date and Task Priority
